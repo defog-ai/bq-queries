@@ -30,6 +30,7 @@ To summarize key stats in BigQuery and save them to an SQL server, and then quer
 ### 1. Overall Statistics
 - Client Id
 - Time
+- Device Type
 - How many users?
 - How many visits?
 - How many pageviews?
@@ -39,6 +40,11 @@ To summarize key stats in BigQuery and save them to an SQL server, and then quer
 - How many pageviews from Forums?
 - How many pageviews from Direct?
 - How many pageviews from Other sources?
+- What was the average affluence index?
+- First time pageviews
+- First time sessions
+- Pageviews from users active in last day
+- Pageviews from users active in last week
 
 ### 2. Geography-based statistics for pageviews and users
 - Client Id
@@ -46,29 +52,34 @@ To summarize key stats in BigQuery and save them to an SQL server, and then quer
 - Country
 - State
 - City
+- Device Type
 - Latitude
 - Longitude
-- Referrer
+- Session referrer class
 - URL (can be null for overall)
 - Users
 - Sessions
 - Pageviews
 - Pageviews with timespent
 - Timespent
+- First time pageviews
 - First time sessions
+- Pageviews from users active in last day
+- Pageviews from users active in last week
 
 ### 3. URL-based statistics
 - Client Id
 - Time
 - URL Slug (can be null)
+- Device Type
 - Session Referrer
 - Num pageviews
 - Num pageviews with time spent
 - Num unique sessions
-- Num first time sessions
-- Num pageviews with users active in last 24 hours
-- Num pageviews with users active in last 7 days
-- Num pageviews with affluence index
+- First time pageviews
+- First time sessions
+- Pageviews from users active in last day
+- Pageviews from users active in last week
 - Total affluence index
 - Total time spent
 - Last url in session count
