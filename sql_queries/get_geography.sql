@@ -1,5 +1,3 @@
--- TODO: add time partitions. Join with lat-long coordinates
-
 SELECT
   client_id,
   EXTRACT(DATE from cur_time) date,
@@ -23,6 +21,8 @@ SELECT
   COUNT(CASE WHEN active_last_7days THEN 1 END) pageviews_active_last_week
 FROM
   `the-broadline.fsd.web_ingestion`
+WHERE
+  DATETIME(_PARTITIONTIME) BETWEEN "YYYY-MM-DD HH:00:00" AND "YYYY-MM-DD HH:00:00"
 GROUP BY
-  ROLLUP(client_id, date, hour, device_type, session_referrer, url_path, country, province, city)
+  ROLLUP(client_id, date, hour, country, province, city, url_path, device_type, session_referrer)
 ;

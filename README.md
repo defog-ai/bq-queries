@@ -92,11 +92,4 @@ To summarize key stats in BigQuery and save them to an SQL server, and then quer
 - Total counts
 
 ### 5. Event Statistics
-- Client Id
-- Time
-- URL (cannot be null)
-- PageId (to ensure that all events can be tracked back to the same page)
-- Event order
-- Event type
-- Event name
-- Event value
+One table for each event (events 1 through 10), with event count subdivided by multiple factors
