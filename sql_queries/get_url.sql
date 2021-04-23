@@ -31,7 +31,7 @@ SELECT
 FROM
   `the-broadline.fsd.web_ingestion`
 WHERE
-  DATETIME(_PARTITIONTIME) BETWEEN "YYYY-MM-DD HH:00:00" AND "YYYY-MM-DD HH:00:00"
+  DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 GROUP BY
   client_id, date, hour, url_path, device_type, session_referrer
 ;

@@ -10,7 +10,6 @@ SELECT
   SUM(time_spent) tot_time,
   COUNT(affluence_index) pageviews_w_affluence,
   SUM(affluence_index) affluence_index,
-  COUNT(CASE WHEN first_ever_session THEN 1 END) num_first_ever_sessions,
   COUNT(CASE WHEN session_referrer_type = 'Search' THEN 1 END) search_pageviews,
   COUNT(CASE WHEN session_referrer_type = 'Social' THEN 1 END) social_pageviews,
   COUNT(CASE WHEN session_referrer_type = 'Forum' THEN 1 END) forum_pageviews,
@@ -23,7 +22,7 @@ SELECT
 FROM
   `the-broadline.fsd.web_ingestion`
 WHERE
-  DATETIME(_PARTITIONTIME) BETWEEN "YYYY-MM-DD HH:00:00" AND "YYYY-MM-DD HH:00:00"
+  DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 GROUP BY
-  client_id, date, hour, device_type
+  client_id, date, hour, device_type, session_referrer_type
 ;

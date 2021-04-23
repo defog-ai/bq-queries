@@ -6,5 +6,5 @@ WHERE
     FROM `the-broadline.fsd.web_ingestion` 
     GROUP BY page_id
   )
-  AND DATETIME(_PARTITIONTIME) BETWEEN "YYYY-MM-DD HH:00:00" AND "YYYY-MM-DD HH:00:00"
+  AND DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 ;

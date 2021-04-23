@@ -6,13 +6,17 @@
 - [done] Write initial statements for URL read next statistics
 - [done] Write initial statements for event statistics
 - [done] Add time constraints so that the entire BQ table isn't being queried all at once
-- [] Write create statements for the PostgreSQL tables (can add indexes later)
-- [] Make changes needed to the worker worker outlined in the section below
-- [] Create a server that runs PostgreSQL, and also add PostgREST and python cronjobs to it
-- [] Write CF Worker scripts to make requests from the PostgreSQL server
+- [done] Move Covid-19 scraping code from the `instance-machine-image-1` asia-south1-a server to the `analytics` asia-southeast-1a server. Then stop the `instance-machine-image-1` server
+- [done] Create a server that runs PostgreSQL, and also add PostgREST to it
+- [done] Figure out how to actually run SELECT and GROUP BY queries through PostgREST -- this cannot be done. PostgREST is not a good option
+- [done] Design the APIs that will need to be sent to the webserver that converts user requests to SQL statements, and then returns the right data
+- [done] Write create statements for the PostgreSQL tables (can add indexes later)
+- [] Make changes the `ingest` CF worker:
+  - [] Ensure that compute time is always less than 50ms for the `ingest` worker. Maybe by moving useragent parsing to the client?
+  - [] Add a session_referrer_class (Search, Social, Direct, Forum, Other)
+  - [] Add city type (Tier 1, Tier 2, other attributes) to either Worker or dashboard code -- to figure out
+  - [] Add affluence index calculation to worker code. Likely through KV?
+- [done] Figure out a way to store data in the Postgres server. Either directly through Bigquery, or as a python cronjob (just do the latter -- more suited)
+- [] Use serverless Cloud functions with Python (much easier to deploy) to serve the dashboard. It is a simple Flask request and is super easy to implement. No pandas used with this. Later, can switch to Cloudflare Workers if needed once SQL is enabled on CF. Roll own auth to ensure no dependency on GCP
 
 ## Ingest Worker
-- Ensure that compute time is always less than 50ms for the `ingest` worker. Maybe by moving useragent parsing to the client?
-- Add a session_referrer_class (Search, Social, Direct, Forum, Other)
-- Add city type (Tier 1, Tier 2, other attributes) to either Worker or dashboard code -- to figure out
-- Add affluence index calculation to worker code. Likely through KV?

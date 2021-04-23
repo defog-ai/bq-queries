@@ -1,7 +1,15 @@
 -- Different query for each of event number
 
 SELECT
+  client_id
+  date,
+  hour,
   url_path,
+  device_type,
+  session_referrer,
+  country,
+  province,
+  city,
   event1,
   COUNT(1) hits
 FROM (
@@ -11,7 +19,6 @@ FROM (
     EXTRACT(HOUR from cur_time) hour,
     device_type,
     session_referrer,
-    uuid,
     session_id,
     url_path,
     country,
@@ -19,8 +26,7 @@ FROM (
     city
     SPLIT(event1_values, "||") event1_values
   FROM `the-broadline.fsd.web_ingestion`
-  WHERE DATETIME(_PARTITIONTIME) BETWEEN "YYYY-MM-DD HH:00:00" AND "YYYY-MM-DD HH:00:00"
+  WHERE DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 ) t1
 CROSS JOIN UNNEST(t1.event1_values) AS event1
-GROUP BY unroll(client_id, date, hour, url_path, event1)
-ORDER BY hits DESC;
+GROUP BY client_id, date, hour, url_path, event1;
