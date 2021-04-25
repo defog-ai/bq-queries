@@ -11,12 +11,13 @@
 - [done] Figure out how to actually run SELECT and GROUP BY queries through PostgREST -- this cannot be done. PostgREST is not a good option
 - [done] Design the APIs that will need to be sent to the webserver that converts user requests to SQL statements, and then returns the right data
 - [done] Write create statements for the PostgreSQL tables (can add indexes later)
-- [] Make changes the `ingest` CF worker:
-  - [] Ensure that compute time is always less than 50ms for the `ingest` worker. Maybe by moving useragent parsing to the client?
-  - [] Add a session_referrer_class (Search, Social, Direct, Forum, Other)
-  - [] Add city type (Tier 1, Tier 2, other attributes) to either Worker or dashboard code -- to figure out
-  - [] Add affluence index calculation to worker code. Likely through KV?
+- [halfway] Make changes the `ingest` CF worker:
+  - [done] Ensure that compute time is always less than 50ms for the `ingest` worker. Done by replacing the `useragent` module with `ua-parser-js`
+  - [done] Add a session_referrer_class (Search, Social, Direct, Forum, Other)
+  - [later] Add affluence index calculation to worker code. Likely through KV?
+  - [later] Add city type (Tier 1, Tier 2, other attributes) to either Worker or dashboard code -- to figure out
 - [done] Figure out a way to store data in the Postgres server. Either directly through Bigquery, or as a python cronjob (just do the latter -- more suited)
+- [] Execute and automate the cronjobs
 - [] Use serverless Cloud functions with Python (much easier to deploy) to serve the dashboard. It is a simple Flask request and is super easy to implement. No pandas used with this. Later, can switch to Cloudflare Workers if needed once SQL is enabled on CF. Roll own auth to ensure no dependency on GCP
 
 ## Ingest Worker
