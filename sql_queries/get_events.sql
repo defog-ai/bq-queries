@@ -1,7 +1,7 @@
 -- Different query for each of event number
 
 SELECT
-  client_id
+  client_id,
   date,
   hour,
   url_path,
