@@ -1,4 +1,5 @@
 import psycopg2
+import os
 
 create_overall = """CREATE TABLE IF NOT EXISTS overall (
   client_id TEXT NOT NULL,
@@ -232,7 +233,7 @@ create_event_10 = """CREATE TABLE IF NOT EXISTS event10 (
   hits BIGINT
 );"""
 
-conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password="")
+conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password=os.environ["POSTGRES_PASSWORD"])
 cur = conn.cursor()
 cur.execute(create_overall)
 cur.execute(create_url)
