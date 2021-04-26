@@ -13,8 +13,8 @@ SELECT
 FROM (
   SELECT
     client_id,
-    EXTRACT(DATE from cur_time) date,
-    EXTRACT(HOUR from cur_time) hour,
+    CAST(EXTRACT(DATE from cur_time) AS STRING) date,
+    CAST(EXTRACT(HOUR from cur_time) AS STRING) hour,
     url_path,
     session_referrer,
     device_type,

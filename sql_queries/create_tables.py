@@ -3,8 +3,8 @@ import os
 
 create_overall = """CREATE TABLE IF NOT EXISTS overall (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   device_type TEXT,
   users BIGINT,
   sessions BIGINT,
@@ -26,8 +26,8 @@ create_overall = """CREATE TABLE IF NOT EXISTS overall (
 
 create_url = """CREATE TABLE IF NOT EXISTS url (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -58,8 +58,8 @@ create_url = """CREATE TABLE IF NOT EXISTS url (
 
 create_geography = """CREATE TABLE IF NOT EXISTS geography (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   device_type TEXT,
   session_referrer TEXT,
   country TEXT,
@@ -81,8 +81,8 @@ create_geography = """CREATE TABLE IF NOT EXISTS geography (
 
 create_next_url = """CREATE TABLE IF NOT EXISTS next_url (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   session_referrer TEXT,
   device_type TEXT,
   country TEXT,
@@ -95,8 +95,8 @@ create_next_url = """CREATE TABLE IF NOT EXISTS next_url (
 
 create_event_1 = """CREATE TABLE IF NOT EXISTS event1 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -109,8 +109,8 @@ create_event_1 = """CREATE TABLE IF NOT EXISTS event1 (
 
 create_event_2 = """CREATE TABLE IF NOT EXISTS event2 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -123,8 +123,8 @@ create_event_2 = """CREATE TABLE IF NOT EXISTS event2 (
 
 create_event_3 = """CREATE TABLE IF NOT EXISTS event3 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -137,8 +137,8 @@ create_event_3 = """CREATE TABLE IF NOT EXISTS event3 (
 
 create_event_4 = """CREATE TABLE IF NOT EXISTS event4 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -151,8 +151,8 @@ create_event_4 = """CREATE TABLE IF NOT EXISTS event4 (
 
 create_event_5 = """CREATE TABLE IF NOT EXISTS event5 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -165,8 +165,8 @@ create_event_5 = """CREATE TABLE IF NOT EXISTS event5 (
 
 create_event_6 = """CREATE TABLE IF NOT EXISTS event6 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -179,8 +179,8 @@ create_event_6 = """CREATE TABLE IF NOT EXISTS event6 (
 
 create_event_7 = """CREATE TABLE IF NOT EXISTS event7 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -193,8 +193,8 @@ create_event_7 = """CREATE TABLE IF NOT EXISTS event7 (
 
 create_event_8 = """CREATE TABLE IF NOT EXISTS event8 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -207,8 +207,8 @@ create_event_8 = """CREATE TABLE IF NOT EXISTS event8 (
 
 create_event_9 = """CREATE TABLE IF NOT EXISTS event9 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
@@ -221,8 +221,8 @@ create_event_9 = """CREATE TABLE IF NOT EXISTS event9 (
 
 create_event_10 = """CREATE TABLE IF NOT EXISTS event10 (
   client_id TEXT NOT NULL,
-  date INT,
-  hour INT,
+  date TEXT,
+  hour TEXT,
   url_path TEXT,
   device_type TEXT,
   session_referrer TEXT,
