@@ -23,11 +23,11 @@ SELECT
   COUNT(CASE WHEN time_spent BETWEEN 120 AND 150 THEN 1 END) pageviews_ts_120_150,
   COUNT(CASE WHEN time_spent BETWEEN 150 AND 180 THEN 1 END) pageviews_ts_150_180,
   COUNT(CASE WHEN time_spent > 180 THEN 1 END) pageviews_ts_gt_180,
-  COUNT(CASE WHEN scroll_deph BETWEEN 0 AND 20 THEN 1 END) pageviews_sd_lt_20,
-  COUNT(CASE WHEN scroll_deph BETWEEN 20 AND 40 THEN 1 END) pageviews_sd_20_40,
-  COUNT(CASE WHEN scroll_deph BETWEEN 40 AND 60 THEN 1 END) pageviews_sd_40_60,
-  COUNT(CASE WHEN scroll_deph BETWEEN 60 AND 80 THEN 1 END) pageviews_sd_60_80,
-  COUNT(CASE WHEN scroll_deph > 80 THEN 1 END) pageviews_sd_gt_80
+  COUNT(CASE WHEN max_depth BETWEEN 0 AND 20 THEN 1 END) pageviews_sd_lt_20,
+  COUNT(CASE WHEN max_depth BETWEEN 20 AND 40 THEN 1 END) pageviews_sd_20_40,
+  COUNT(CASE WHEN max_depth BETWEEN 40 AND 60 THEN 1 END) pageviews_sd_40_60,
+  COUNT(CASE WHEN max_depth BETWEEN 60 AND 80 THEN 1 END) pageviews_sd_60_80,
+  COUNT(CASE WHEN max_depth > 80 THEN 1 END) pageviews_sd_gt_80
 FROM
   `the-broadline.fsd.web_ingestion`
 WHERE
