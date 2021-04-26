@@ -24,7 +24,7 @@ FROM (
     country,
     province,
     city,
-    SPLIT(event1_values, "||") event{num}_values
+    SPLIT(event{num}_values, "||") event{num}_values
   FROM `the-broadline.fsd.web_ingestion`
   WHERE DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 ) t1
