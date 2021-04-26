@@ -1,3 +1,5 @@
+import psycopg2
+
 create_overall = """CREATE TABLE IF NOT EXISTS overall (
   client_id TEXT NOT NULL,
   date INT,
@@ -229,3 +231,22 @@ create_event_10 = """CREATE TABLE IF NOT EXISTS event10 (
   event TEXT,
   hits BIGINT
 );"""
+
+conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres")
+cur = conn.cursor()
+cur.execute(create_overall)
+cur.execute(create_url)
+cur.execute(create_geography)
+cur.execute(create_next_url)
+cur.execute(create_event_1)
+cur.execute(create_event_2)
+cur.execute(create_event_3)
+cur.execute(create_event_4)
+cur.execute(create_event_5)
+cur.execute(create_event_6)
+cur.execute(create_event_7)
+cur.execute(create_event_8)
+cur.execute(create_event_9)
+cur.execute(create_event_10)
+conn.commit()
+cur.close()
