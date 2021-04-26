@@ -29,7 +29,7 @@ def run_bq_query(query):
   rows = []
   for row in query_job:
       # Row values can be accessed by either field name or index.
-      rows.append((row[i] for i in range(len(row))))
+      rows.append([row[i] for i in range(len(row))])
   return rows
 
 #set the from_time and to_time to get the right partitions to query
