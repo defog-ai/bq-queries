@@ -17,7 +17,7 @@ def insert_to_postgres(table_name, data=(), num_cols=0):
   """
   conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password=os.environ["POSTGRES_PASSWORD"])
   cur = conn.cursor()
-  values_placeholder = {', '.join(['%s' for _ in range(num_cols)])}
+  values_placeholder = ', '.join(['%s' for _ in range(num_cols)])
   cur.executemany(f"INSERT INTO {table_name} VALUES({values_placeholder})", data)
   conn.commit()
   cur.close()
@@ -25,7 +25,7 @@ def insert_to_postgres(table_name, data=(), num_cols=0):
 
 def run_bq_query(query):
   client = bigquery.Client()
-  query_job = client.query(query)  # Make an API request.
+  query_job = client.query(query) # Make an API request.
   rows = []
   for row in query_job:
       # Row values can be accessed by either field name or index.
