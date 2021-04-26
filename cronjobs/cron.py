@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 import os
 
 #Setting up location of directory with SQL queries
-sql_queries_path = "../sql_queries"
+sql_queries_path = "/home/rishabhsriv/bq-queries/sql_queries"
 
 #Setting up Google Authentication
-json_key = '/path/to/google_key.json'
+json_key = '/home/rishabhsriv/google_key.json'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = json_key
 
 def insert_to_postgres(table_name, data=()):
