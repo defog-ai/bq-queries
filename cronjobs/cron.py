@@ -10,14 +10,14 @@ sql_queries_path = "/home/rishabhsriv/bq-queries/sql_queries"
 json_key = '/home/rishabhsriv/google_key.json'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = json_key
 
-def insert_to_postgres(table_name, data=()):
+def insert_to_postgres(table_name, data=(), num_cols=0):
   """
   `table_name` is a string
   `data` is a tuple of tuples
   """
   conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password=os.environ["POSTGRES_PASSWORD"])
   cur = conn.cursor()
-  values_placeholder = {', '.join(['%s' for _ in range(len(data[0]))])}
+  values_placeholder = {', '.join(['%s' for _ in num_cols])}
   cur.executemany(f"INSERT INTO {table_name} VALUES({values_placeholder})", data)
   conn.commit()
   cur.close()
@@ -44,10 +44,10 @@ query = query.format(from_time=from_time, to_time=to_time)
 run_bq_query(query)
 
 queries_and_associated_tables = [
-  {"query_fname": "get_overall.sql", "table_name": "overall"},
-  {"query_fname": "get_url.sql", "table_name": "url"},
-  {"query_fname": "get_geography.sql", "table_name": "geography"},
-  {"query_fname": "next_url.sql", "table_name": "next_url"}
+  {"query_fname": "get_overall.sql", "table_name": "overall", 'num_cols': 20},
+  {"query_fname": "get_url.sql", "table_name": "url", 'num_cols': 29},
+  {"query_fname": "get_geography.sql", "table_name": "geography", 'num_cols': 20},
+  {"query_fname": "next_url.sql", "table_name": "next_url", 'num_cols': 11}
 ]
 
 #run the non event queries
@@ -57,7 +57,7 @@ for item in queries_and_associated_tables:
 
   query = query.format(from_time=from_time, to_time=to_time)
   values = run_bq_query(query)
-  insert_to_postgres(item['table_name'], values)
+  insert_to_postgres(item['table_name'], values, num_cols=item['num_cols'])
 
 #run event queries
 for num in range(1,11):
@@ -66,4 +66,4 @@ for num in range(1,11):
   
   query = query.format(num=num, from_time=from_time, to_time=to_time)
   values = run_bq_query(query)
-  insert_to_postgres(f"event{num}", values)
+  insert_to_postgres(f"event{num}", values, num_cols=11)
