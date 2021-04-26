@@ -33,7 +33,7 @@ def run_bq_query(query):
   return rows
 
 #set the from_time and to_time to get the right partitions to query
-from_time = (datetime.utcnow() - timedelta(hours=1)).strftime("%Y-%m-%d %H:00:00")
+from_time = "2020-04-01 00:00:00"
 to_time = (datetime.utcnow() - timedelta(hours=0)).strftime("%Y-%m-%d %H:00:00")
 
 #delete duplicate rows in the latest hour
