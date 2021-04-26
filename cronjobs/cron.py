@@ -15,7 +15,7 @@ def insert_to_postgres(table_name, data=()):
   `table_name` is a string
   `data` is a tuple of tuples
   """
-  conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres")
+  conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password="")
   cur = conn.cursor()
   values_placeholder = {', '.join(['%s' for _ in range(len(data[0]))])}
   cur.executemany(f"INSERT INTO {table_name} VALUES({values_placeholder})", data)

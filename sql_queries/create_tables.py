@@ -232,7 +232,7 @@ create_event_10 = """CREATE TABLE IF NOT EXISTS event10 (
   hits BIGINT
 );"""
 
-conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres")
+conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password="")
 cur = conn.cursor()
 cur.execute(create_overall)
 cur.execute(create_url)
