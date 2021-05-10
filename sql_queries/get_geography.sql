@@ -1,7 +1,7 @@
 SELECT
   client_id,
   CAST(EXTRACT(DATE from cur_time) AS STRING) date,
-  CONCAT(CAST(EXTRACT(DATE from cur_time) AS STRING), CAST(EXTRACT(HOUR from cur_time) AS STRING)) hour,
+  CONCAT(CAST(EXTRACT(DATE from cur_time) AS STRING), "-", LPAD(CAST(EXTRACT(HOUR from cur_time) AS STRING), 2, '0')) hour,
   device_type,
   session_referrer,
   country,
