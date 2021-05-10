@@ -17,7 +17,5 @@
   - [later] Add affluence index calculation to worker code. Likely through KV?
   - [later] Add city type (Tier 1, Tier 2, other attributes) to either Worker or dashboard code -- to figure out
 - [done] Figure out a way to store data in the Postgres server. Either directly through Bigquery, or as a python cronjob (just do the latter -- more suited)
-- [] Execute and automate the cronjobs
-- [] Use serverless Cloud functions with Python (much easier to deploy) to serve the dashboard. It is a simple Flask request and is super easy to implement. No pandas used with this. Later, can switch to Cloudflare Workers if needed once SQL is enabled on CF. Roll own auth to ensure no dependency on GCP
-
-## Ingest Worker
+- [done] Execute and automate the cronjobs
+- [done] Use serverless Cloud functions with Python (much easier to deploy) to serve the dashboard. It is a simple Flask request and is super easy to implement. No pandas used with this. Later, can switch to Cloudflare Workers if needed once SQL is enabled on CF. Roll own auth to ensure no dependency on GCP
