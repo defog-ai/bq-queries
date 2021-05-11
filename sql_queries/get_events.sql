@@ -29,4 +29,6 @@ FROM (
   WHERE DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 ) t1
 CROSS JOIN UNNEST(t1.event{num}_values) AS event
-GROUP BY client_id, date, hour, url_path, device_type, session_referrer, country, province, city, event;
+GROUP BY client_id, date, hour, url_path, device_type, session_referrer, country, province, city, event
+ORDER BY hour
+;

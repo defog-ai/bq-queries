@@ -25,4 +25,5 @@ WHERE
   DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
 GROUP BY
   client_id, date, hour, country, province, city, url_path, device_type, session_referrer
+ORDER BY hour
 ;

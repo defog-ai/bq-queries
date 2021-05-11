@@ -46,4 +46,5 @@ ON
   t1.session_id = t2.session_id AND t2.session_hit_num = t1.session_hit_num + 1 AND t1.url_path != t2.url_path
 GROUP BY
   client_id, date, hour, session_referrer, device_type, country, province, city, from_url, to_url
+ORDER BY hour
 ;
