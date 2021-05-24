@@ -45,7 +45,7 @@ run_bq_query(query)
 
 queries_and_associated_tables = [
   {"query_fname": "get_overall.sql", "table_name": "overall", 'num_cols': 20},
-  {"query_fname": "get_url.sql", "table_name": "url", 'num_cols': 29},
+  #{"query_fname": "get_url.sql", "table_name": "url", 'num_cols': 29},
   {"query_fname": "get_geography.sql", "table_name": "geography", 'num_cols': 32},
   {"query_fname": "next_url.sql", "table_name": "next_url", 'num_cols': 11}
 ]
