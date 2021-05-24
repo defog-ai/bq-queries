@@ -76,7 +76,19 @@ create_geography = """CREATE TABLE IF NOT EXISTS geography (
   first_pageviews BIGINT,
   first_sessions BIGINT,
   pageviews_active_last_day BIGINT,
-  pageviews_active_last_week BIGINT
+  pageviews_active_last_week BIGINT,
+  pageviews_ts_lt_30 BIGINT,
+  pageviews_ts_30_60 BIGINT,
+  pageviews_ts_60_90 BIGINT,
+  pageviews_ts_90_120 BIGINT,
+  pageviews_ts_120_150 BIGINT,
+  pageviews_ts_150_180 BIGINT,
+  pageviews_ts_gt_180 BIGINT,
+  pageviews_sd_lt_20 BIGINT,
+  pageviews_sd_20_40 BIGINT,
+  pageviews_sd_40_60 BIGINT,
+  pageviews_sd_60_80 BIGINT,
+  pageviews_sd_gt_80 BIGINT
 );"""
 
 create_next_url = """CREATE TABLE IF NOT EXISTS next_url (

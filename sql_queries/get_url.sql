@@ -32,6 +32,7 @@ FROM
   `the-broadline.fsd.web_ingestion`
 WHERE
   DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
+  OR _PARTITIONTIME IS NULL
 GROUP BY
   client_id, date, hour, url_path, device_type, session_referrer
 ORDER BY hour

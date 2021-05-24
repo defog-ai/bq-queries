@@ -39,6 +39,7 @@ INNER JOIN (
     `the-broadline.fsd.web_ingestion`
   WHERE
     DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
+    OR _PARTITIONTIME IS NULL
   ORDER BY
     session_id, session_hit_num
 ) AS t2
