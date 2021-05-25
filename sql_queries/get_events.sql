@@ -27,8 +27,7 @@ FROM (
     SPLIT(event{num}_values, "||") event{num}_values
   FROM `the-broadline.fsd.web_ingestion`
   WHERE (
-    DATETIME(_PARTITIONTIME) BETWEEN "{from_time}" AND "{to_time}"
-    OR _PARTITIONTIME IS NULL
+    DATETIME(_PARTITIONTIME) >= "{from_time}" OR _PARTITIONTIME IS NULL
   )
 ) t1
 CROSS JOIN UNNEST(t1.event{num}_values) AS event

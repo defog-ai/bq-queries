@@ -34,13 +34,15 @@ def run_bq_query(query):
 
 #set the from_time and to_time to get the right partitions to query
 from_time = (datetime.utcnow() - timedelta(hours=1)).strftime("%Y-%m-%d %H:00:00")
-to_time = (datetime.utcnow() - timedelta(hours=0)).strftime("%Y-%m-%d %H:00:00")
+#to_time = (datetime.utcnow() - timedelta(hours=0)).strftime("%Y-%m-%d %H:00:00")
 
 #delete duplicate rows in the latest hour
 with open(f"{sql_queries_path}/delete_duplicates.sql", "r") as f:
   query = f.read()
 
-query = query.format(from_time=from_time, to_time=to_time)
+query = query.format(from_time=from_time,
+#to_time=to_time
+)
 run_bq_query(query)
 
 queries_and_associated_tables = [
@@ -55,7 +57,9 @@ for item in queries_and_associated_tables:
   with open(f"{sql_queries_path}/{item['query_fname']}", "r") as f:
     query = f.read()
 
-  query = query.format(from_time=from_time, to_time=to_time)
+  query = query.format(from_time=from_time,
+  # to_time=to_time
+  )
   values = run_bq_query(query)
   insert_to_postgres(item['table_name'], values, num_cols=item['num_cols'])
 
@@ -64,6 +68,8 @@ for num in range(1,11):
   with open(f"{sql_queries_path}/get_events.sql", "r") as f:
     query = f.read()
   
-  query = query.format(num=num, from_time=from_time, to_time=to_time)
+  query = query.format(num=num, from_time=from_time,
+  #to_time=to_time
+  )
   values = run_bq_query(query)
   insert_to_postgres(f"event{num}", values, num_cols=11)
