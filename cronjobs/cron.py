@@ -41,6 +41,7 @@ def run_bq_query(query):
 
 #set the from_time and to_time to get the right partitions to query
 from_time = (datetime.utcnow() - timedelta(hours=2)).strftime("%Y-%m-%d %H:00:00")
+postgres_delete_from_time = (datetime.utcnow() - timedelta(hours=2)).strftime("%Y-%m-%d-%H")
 
 #delete duplicate rows in BigQuery
 with open(f"{sql_queries_path}/delete_duplicates.sql", "r") as f:
@@ -50,17 +51,17 @@ query = query.format(from_time=from_time)
 run_bq_query(query)
 
 #delete data for the last hour on postgres
-base_query = "DELETE FROM {table_name} WHERE hour >= {from_time}"
+base_query = "DELETE FROM {table_name} WHERE hour >= '{from_time}'"
 
 ## first, for the non-event tables
 table_names = ["overall", "geography", "next_url"]
 for table in table_names:
-  query_to_run = base_query.format(table_name=table, from_time=from_time)
+  query_to_run = base_query.format(table_name=table, from_time=postgres_delete_from_time)
   delete_from_postgres(query_to_run)
 
 ## then, for event tables
 for num in range(1, 11):
-  query_to_run = base_query.format(table_name=f"event{num}", from_time=from_time)
+  query_to_run = base_query.format(table_name=f"event{num}", from_time=postgres_delete_from_time)
   delete_from_postgres(query_to_run)
 
 #run queries to summarize bigquery data and put it into postgres (non-event)
