@@ -10,6 +10,14 @@ sql_queries_path = "/home/rishabhsriv/bq-queries/sql_queries"
 json_key = '/home/rishabhsriv/google_key.json'
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = json_key
 
+def delete_from_postgres(query):
+  conn = psycopg2.connect(host="localhost", dbname="fsd_analytics", user="postgres", password=os.environ["POSTGRES_PASSWORD"])
+  cur = conn.cursor()
+  cur.execute(query)
+  conn.commit()
+  cur.close()
+  return True
+
 def insert_to_postgres(table_name, data=(), num_cols=0):
   """
   `table_name` is a string
@@ -32,22 +40,28 @@ def run_bq_query(query):
       rows.append([row[i] for i in range(len(row))])
   return rows
 
+#delete everything from postgres
+base_query = "DELETE FROM {table_name}"
+for table in ["overall", "geography", "next_url"]:
+  query = base_query.format(table_name=table)
+  delete_from_postgres(query)
+
+for num in range(1,11):
+  query = base_query.format(table_name=f"event{num}")
+  delete_from_postgres(query)
+
 #set the from_time and to_time to get the right partitions to query
 from_time = "2021-04-01 00:00:00"
-#to_time = (datetime.utcnow() - timedelta(hours=0)).strftime("%Y-%m-%d %H:00:00")
 
 #delete duplicate rows in the latest hour
 with open(f"{sql_queries_path}/delete_duplicates.sql", "r") as f:
   query = f.read()
 
-query = query.format(from_time=from_time,
-#to_time=to_time
-)
+query = query.format(from_time=from_time)
 run_bq_query(query)
 
 queries_and_associated_tables = [
   {"query_fname": "get_overall.sql", "table_name": "overall", 'num_cols': 20},
-  #{"query_fname": "get_url.sql", "table_name": "url", 'num_cols': 29},
   {"query_fname": "get_geography.sql", "table_name": "geography", 'num_cols': 32},
   {"query_fname": "next_url.sql", "table_name": "next_url", 'num_cols': 11}
 ]
@@ -57,9 +71,7 @@ for item in queries_and_associated_tables:
   with open(f"{sql_queries_path}/{item['query_fname']}", "r") as f:
     query = f.read()
 
-  query = query.format(from_time=from_time,
-  #to_time=to_time
-  )
+  query = query.format(from_time=from_time)
   values = run_bq_query(query)
   insert_to_postgres(item['table_name'], values, num_cols=item['num_cols'])
 
@@ -68,8 +80,6 @@ for num in range(1,11):
   with open(f"{sql_queries_path}/get_events.sql", "r") as f:
     query = f.read()
   
-  query = query.format(num=num, from_time=from_time,
-  #to_time=to_time
-  )
+  query = query.format(num=num, from_time=from_time)
   values = run_bq_query(query)
   insert_to_postgres(f"event{num}", values, num_cols=11)
