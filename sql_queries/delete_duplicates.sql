@@ -7,6 +7,7 @@ WHERE
     GROUP BY page_id
   )
   AND (
-    DATETIME(_PARTITIONTIME) >= "{from_time}" OR _PARTITIONTIME IS NULL
+    DATETIME(_PARTITIONTIME) >= "{from_time}"
+    --OR _PARTITIONTIME IS NULL
   )
 ;
