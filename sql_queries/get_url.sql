@@ -31,7 +31,8 @@ SELECT
 FROM
   `the-broadline.fsd.web_ingestion`
 WHERE
-  DATETIME(_PARTITIONTIME) >= "{from_time}" OR _PARTITIONTIME IS NULL
+  DATETIME(_PARTITIONTIME) >= "{from_time}"
+  -- OR _PARTITIONTIME IS NULL
 GROUP BY
   client_id, date, hour, url_path, device_type, session_referrer
 ORDER BY hour

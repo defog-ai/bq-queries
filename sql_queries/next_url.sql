@@ -26,7 +26,8 @@ FROM (
   FROM
     `the-broadline.fsd.web_ingestion`
   WHERE
-    DATETIME(_PARTITIONTIME) >= "{from_time}" OR _PARTITIONTIME IS NULL
+    DATETIME(_PARTITIONTIME) >= "{from_time}"
+    -- OR _PARTITIONTIME IS NULL
   ORDER BY
     session_id, session_hit_num
 ) AS t1
